@@ -1,7 +1,7 @@
 public class Mur extends Case{
 
     public Mur(){
-        this.representation = '%';
+        this.representation = (char) 37;
     }
 
     @Override
@@ -11,6 +11,6 @@ public class Mur extends Case{
 
     @Override
     public void interagir(Robot robot) {
-        //robot doesn't move?
+        //le robot ne bouge pas
     }
 }

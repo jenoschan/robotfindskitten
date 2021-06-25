@@ -25,16 +25,16 @@ public class Grille {
 
     public Point randomEmptyCell(){
         //Retourne une coordonnée de cellule qui ne contient rien
-        //Review this method
+
         int coordX;
         int coordY;
 
         do {
-            coordX = (int) (Math.random() * (double) this.grille.length);
-            coordY = (int) (Math.random() * (double) this.grille[0].length);
-        } while (this.grille[coordX][coordY] != null);
+            coordX = (int) (Math.random() * (double) this.grille[0].length);
+            coordY = (int) (Math.random() * (double) this.grille.length);
+        } while (this.grille[coordY][coordX] != null);
 
-        return new Point(coordY,coordX);
+        return new Point(coordX,coordY);
     }
 
     public boolean deplacementPossible(Robot robot, int x, int y){
@@ -50,8 +50,9 @@ public class Grille {
 
         for (int i = 0; i < this.grille.length; i++){
             for (int j = 0; j < this.grille[i].length; j++){
-                if (...){
+                if (robot.getRoboCoord().egal(j,i)){ // hmmmmmm
                     System.out.println('#');
+                    continue;
                 } else if (this.grille[i][j] == null){
                     System.out.println(' ');
                 } else {
@@ -61,11 +62,11 @@ public class Grille {
             System.out.println('%');
         }
 
-        //Prints out the wall on the right
+        //Prints out the wall on the left
         for (int i = 0; i < this.grille[0].length + 1; i++){
             System.out.println('%');
         }
-
+//        System.out.println();
     }
 
     void interagir(Robot robot){

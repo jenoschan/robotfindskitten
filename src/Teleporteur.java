@@ -1,7 +1,7 @@
 public class Teleporteur extends Case{
 
     public Teleporteur(){
-        this.representation = 'T';
+        this.representation = (char) 84; //T
     }
 
     @Override
@@ -11,6 +11,7 @@ public class Teleporteur extends Case{
 
     @Override
     public void interagir(Robot robot) {
-        //todo
+
+        robot.setGotTeleport(true);
     }
 }

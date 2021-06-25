@@ -1,7 +1,7 @@
 public class Porte extends Case{
 
     public Porte(){
-        this.representation = '!';
+        this.representation = (char) 33; //!
     }
 
     @Override
@@ -14,7 +14,7 @@ public class Porte extends Case{
 
     @Override
     public void interagir(Robot robot) {
-        //todo
+        robot.useKey();
     }
 
 

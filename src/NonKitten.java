@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class NonKitten extends Case {
     public static String[] descriptions = new String[]{
             "I pity the fool who mistakes me for kitten!\", sez Mr. T.",
@@ -411,9 +409,9 @@ public class NonKitten extends Case {
     private String message;
 
     public NonKitten(){
-        Random generator = new Random();
-        int randomIndex = generator.nextInt(descriptions.length);
+        int randomIndex = (int) (Math.random() * descriptions.length);
         this.message = descriptions[randomIndex];
+        this.representation = (char) (Math.random() * 68.0 + 58.0);
     }
 
     @Override

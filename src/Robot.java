@@ -17,7 +17,7 @@ public class Robot {
     public Robot(String robotName, Point roboCoord){
         this.robotName = robotName;
         this.roboCoord = roboCoord;
-        this.canMove = false;//???
+        this.canMove = false;
         this.nbrKey = 0;
         this.gotTeleport = false;
     }
@@ -42,12 +42,29 @@ public class Robot {
         return this.roboCoord;
     }
 
-    public void setGotTeleport(){
+    public void setRoboCoord(Point goCoord){
+        this.roboCoord = goCoord;
+    }
+
+    public void setRoboCoord(int axeX, int axeY){
+        this.roboCoord = new Point(axeX, axeY);
+    }
+
+    public boolean isGotTeleport() {
+        return this.gotTeleport;
+    }
+
+    public void setGotTeleport(boolean hasTeleport){
         this.gotTeleport = true;
     }
 
+    public void setCanMove(){
+        this.canMove = true;
+    }
 
-    //todo
+    public boolean isCanMove() {
+        return this.canMove;
+    }
 
     @Override
     public String toString() {
