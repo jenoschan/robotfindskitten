@@ -12,6 +12,7 @@ public class RobotFindsKitten {
         while (!robot.isCanMove()){
             game.afficher(robot);
             System.out.println(robot + "> ");
+            //grille.deplacement possible????
             char mouvement = scanner.next().toLowerCase().charAt(0); // w a s d and other commands in lowercase
             int axeX = robot.getRoboCoord().getX();
             int axeY = robot.getRoboCoord().getY();
@@ -74,7 +75,7 @@ public class RobotFindsKitten {
                 if (finalGrille.grille[finalAxeY][finalAxeX] == null) {
                     continue;
                 }
-                finalGrille.grille[finalAxeY][finalAxeX].afficher(finalRobot);
+                finalGrille.grille[finalAxeY][finalAxeX].interagir(finalRobot);
 
                 if (finalGrille.grille[finalAxeY][finalAxeX] instanceof NonKitten) {
                     continue;

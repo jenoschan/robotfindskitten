@@ -11,7 +11,6 @@ public class Teleporteur extends Case{
 
     @Override
     public void interagir(Robot robot) {
-
         robot.setGotTeleport(true);
     }
 }

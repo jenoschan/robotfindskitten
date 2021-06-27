@@ -1,6 +1,8 @@
+import javax.sound.sampled.Port;
+
 public class Grille {
     //Classe qui représente la grille de jeu
-    private Case[][] grille;
+    private Case[][] grille = new Case[12][60];
     //un tableau 2D de cases
 
     //Constructeur
@@ -12,14 +14,55 @@ public class Grille {
          Il y a ‘nbrNonKitten‘ NonKittenItems au total sur tout le jeu**/
 
         for (int i = 0; i < this.grille.length; i++){
-            this.grille[i][0] = new Point();
+            this.grille[i][0] = new Mur();
         }
 
         for(int i = 0; i < this.grille[0].length; i++){
-            this.grille[0][i] = new Point();
+            this.grille[0][i] = new Mur();
         }
 
-        //todo
+        for(int i = 1; i < 2; i++) {
+            for(int j = 0; j < this.grille[0].length; j++) {
+                if (j % 12 == 6) {
+                    this.grille[i * 6][j] = new Porte() ;
+                } else {
+                    this.grille[i * 6][j] = new Mur();
+                }
+            }
+        }
+
+        for(int i = 1; i < 5; i++) {
+            for(int j = 0; j < this.grille.length; i++) {
+                if (j % 6 == 3) {
+                    this.grille[j][i * 12] = new Porte();
+                } else {
+                    this.grille[j][i * 12] = new Mur();
+                }
+            }
+        }
+
+        for(int i = 0; i < 2; i++) {
+            for(int j = 0; j < 5; j++) {
+                int newJ = (int)(Math.random() * 11.0D) + 1 + j * 12;
+                int newI = (int)(Math.random() * 5.0D) + 1 + i * 6;
+                this.grille[newI][newJ] = new Teleporteur();
+            }
+        }
+
+        for(int i = 0; i < 50; i++) {
+            Point randomPoint = this.randomEmptyCell();
+            this.grille[randomPoint.getX()][randomPoint.getY()] = new NonKitten();
+        }
+
+        Point key;
+        int keyY = (key = this.randomEmptyCell()).getY();
+        int keyX = key.getX();
+        this.grille[keyX][keyY] = new Cle();
+
+        Point kitten;
+        int kittenY = (kitten = this.randomEmptyCell()).getY();
+        int kittenX = kitten.getX();
+        this.grille[kittenX][kittenY] = new Kitten();
 
     }
 
@@ -41,8 +84,11 @@ public class Grille {
         /**indique si c’est possible pour le robot robot de marcher sur la
         cellule de coordonnée (x, y)**/
 
-        //check neighbours w,a,s,d -> Check if there is a wall
-        //todo
+        if (grille[x][y] instanceof Mur){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void afficher(Robot robot){
