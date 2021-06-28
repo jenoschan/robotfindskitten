@@ -1,8 +1,8 @@
 public class Kitten extends Case{
 
-    private static String [] names = new String []{"Liam","Olivia","Noah","Emma","Oliver",
-            "Ava","Elijah","Charlotte", "William", "Sophia", "James", "Amelia","Benjamin",
-            "Isabella","Lucas","Mia","Henry","Evelyn","Alexander", "Harper"};
+    private static String [] names = new String []{"Cookie","Mr. Mittens","Batman","Minou","Coco",
+            "Bread Loaf","Luna","Nala", "Shadow", "Boots", "Mochi", "Kiki","Lucky",
+            "Brownie","Luigi","Buttercup","Honey","Bear","Marshmallow", "Fluffy"};
     private String catName = names[(int)(Math.random() * 20.0)];
 
     public Kitten(){
@@ -16,8 +16,8 @@ public class Kitten extends Case{
 
     @Override
     public void interagir(Robot robot) {
-        System.out.println("Noiceeeeeee!");
-        System.out.println(this.catName + " <3 " + robot.robotName + "uwu");
+        System.out.println("Noiceeeeeee! You've found a kitten!");
+        System.out.println(this.catName + " <3 " + robot.robotName);
         robot.isCanMove();
     }
 }

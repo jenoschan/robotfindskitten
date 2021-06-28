@@ -1,8 +1,6 @@
-import javax.sound.sampled.Port;
-
 public class Grille {
     //Classe qui représente la grille de jeu
-    Case[][] grille = new Case[12][60];
+    private Case[][] grille;
     //un tableau 2D de cases
 
     //Constructeur
@@ -12,6 +10,8 @@ public class Grille {
         /**Cette fonction initialise la grille en créant les pièces, les portes, les murs
          les clés et les items (le téléporteur, les NonKittenItems et le Kitten)
          Il y a ‘nbrNonKitten‘ NonKittenItems au total sur tout le jeu**/
+
+        this.grille = new Case[12][60];
 
         for (int i = 0; i < this.grille.length; i++){
             this.grille[i][0] = new Mur();
@@ -31,39 +31,43 @@ public class Grille {
             }
         }
 
-        for(int i = 1; i < 5; i++) {
-            for(int j = 0; j < this.grille.length; i++) {
+        for(int i = 1; i < nbrPiecesX; i++) {
+            for(int j = 0; j < this.grille.length; j++) {
                 if (j % 6 == 3) {
-                    this.grille[j][i * 12] = new Porte();
+                    this.grille[j][i * largeurPiece] = new Porte();
                 } else {
-                    this.grille[j][i * 12] = new Mur();
+                    this.grille[j][i * largeurPiece] = new Mur();
                 }
             }
         }
 
-        for(int i = 0; i < 2; i++) {
-            for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < nbrPiecesY; i++) {
+            for(int j = 0; j < nbrPiecesX; j++) {
                 int newJ = (int)(Math.random() * 11.0D) + 1 + j * 12;
                 int newI = (int)(Math.random() * 5.0D) + 1 + i * 6;
-                this.grille[newI][newJ] = new Teleporteur();
+                this.grille[newI][newJ] = new Cle();
             }
         }
 
-        for(int i = 0; i < 50; i++) {
+        for(int i = 0; i < nbrNonKitten; i++) {
             Point randomPoint = this.randomEmptyCell();
-            this.grille[randomPoint.getX()][randomPoint.getY()] = new NonKitten();
+            this.grille[randomPoint.getY()][randomPoint.getX()] = new NonKitten();
         }
 
-        Point key;
-        int keyY = (key = this.randomEmptyCell()).getY();
-        int keyX = key.getX();
-        this.grille[keyX][keyY] = new Cle();
+        Point teleporteur;
+        int keyY = (teleporteur = this.randomEmptyCell()).getY();
+        int keyX = teleporteur.getX();
+        this.grille[keyY][keyX] = new Teleporteur();
 
         Point kitten;
         int kittenY = (kitten = this.randomEmptyCell()).getY();
         int kittenX = kitten.getX();
-        this.grille[kittenX][kittenY] = new Kitten();
+        this.grille[kittenY][kittenX] = new Kitten();
 
+    }
+
+    public Case[][] getGrille(){
+        return this.grille;
     }
 
     public Point randomEmptyCell(){
@@ -97,12 +101,12 @@ public class Grille {
         for (int i = 0; i < this.grille.length; i++){
             for (int j = 0; j < this.grille[i].length; j++){
                 if (robot.getRoboCoord().egal(j,i)){
-                    System.out.println('#');
+                    System.out.print('#');
                     continue;
                 } else if (this.grille[i][j] == null){
-                    System.out.println(' ');
+                    System.out.print(' ');
                 } else {
-                    System.out.println(this.grille[i][j].getRepresentation());
+                    System.out.print(this.grille[i][j].getRepresentation());
                 }
             }
             System.out.println('%');
@@ -110,10 +114,11 @@ public class Grille {
 
         //Prints out the wall on the left
         for (int i = 0; i < this.grille[0].length + 1; i++){
-            System.out.println('%');
+            System.out.print('%');
         }
-//        System.out.println();
+        System.out.println();
     }
+
 
     void interagir(Robot robot){
         /**Lance l’interaction entre le Robot robot et la case de la grille sur

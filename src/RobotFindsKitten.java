@@ -18,9 +18,9 @@ public class RobotFindsKitten {
             int axeY = robot.getRoboCoord().getY();
 
             switch (mouvement) {
-                case 'w' -> axeY++;
+                case 'w' -> axeY--;
                 case 'a' -> axeX--;
-                case 's' -> axeY--;
+                case 's' -> axeY++;
                 case 'd' -> axeX++;
                 case 't' -> {
                     if (robot.isGotTeleport()) {
@@ -41,9 +41,9 @@ public class RobotFindsKitten {
             Robot newRobot = tempRobot;
             Grille newGrille = tempGrille;
 
-            if (newAxeY >= 0 && newAxeX != newGrille.grille[0].length
-                    && newAxeY != newGrille.grille[0].length && (newGrille.grille[newAxeX][newAxeY] == null
-                    || newGrille.grille[newAxeX][newAxeY].interactionPossible(newRobot))){
+            if (newAxeY >= 0 && newAxeX != newGrille.getGrille()[0].length
+                    && newAxeY != newGrille.getGrille()[0].length && (newGrille.getGrille()[newAxeX][newAxeY] == null
+                    || newGrille.getGrille()[newAxeX][newAxeY].interactionPossible(newRobot))){
 
                 robot.setRoboCoord(axeX,axeY);
 
@@ -54,15 +54,15 @@ public class RobotFindsKitten {
                 int finalAxeX = finalRobot.getRoboCoord().getX();
                 int finalAxeY = finalRobot.getRoboCoord().getY();
 
-                if (finalGrille.grille[finalAxeY][finalAxeX] == null) {
+                if (finalGrille.getGrille()[finalAxeY][finalAxeX] == null) {
                     continue;
                 }
-                finalGrille.grille[finalAxeY][finalAxeX].interagir(finalRobot);
+                finalGrille.getGrille()[finalAxeY][finalAxeX].interagir(finalRobot);
 
-                if (finalGrille.grille[finalAxeY][finalAxeX] instanceof NonKitten) {
+                if (finalGrille.getGrille()[finalAxeY][finalAxeX] instanceof NonKitten) {
                     continue;
                 }
-                finalGrille.grille[finalAxeY][finalAxeX] = null;
+                finalGrille.getGrille()[finalAxeY][finalAxeX] = null;
             }
 
         }
