@@ -12,42 +12,24 @@ public class RobotFindsKitten {
         while (!robot.isCanMove()){
             game.afficher(robot);
             System.out.println(robot + "> ");
-            //grille.deplacement possible????
+
             char mouvement = scanner.next().toLowerCase().charAt(0); // w a s d and other commands in lowercase
             int axeX = robot.getRoboCoord().getX();
             int axeY = robot.getRoboCoord().getY();
 
-            switch(mouvement){
-                case 'w':{
-                    axeY++;
-                    break;
-                }
-                case 'a':{
-                    axeX--;
-                    break;
-                }
-                case 's':{
-                    axeY--;
-                    break;
-                }
-                case 'd':{
-                    axeX++;
-                    break;
-                }
-                case 't':{
+            switch (mouvement) {
+                case 'w' -> axeY++;
+                case 'a' -> axeX--;
+                case 's' -> axeY--;
+                case 'd' -> axeX++;
+                case 't' -> {
                     if (robot.isGotTeleport()) {
                         robot.setRoboCoord(game.randomEmptyCell());
                         continue;
                     }
-                    break;
                 }
-                case 'q': {
-                    robot.setCanMove();
-                    break;
-                }
+                case 'q' -> robot.setCanMove();
             }
-
-            //todo make this better and fix grille issue
 
             Grille tempGrille = game;
             Robot tempRobot = robot;
@@ -81,7 +63,6 @@ public class RobotFindsKitten {
                     continue;
                 }
                 finalGrille.grille[finalAxeY][finalAxeX] = null;
-
             }
 
         }

@@ -2,7 +2,7 @@ import javax.sound.sampled.Port;
 
 public class Grille {
     //Classe qui représente la grille de jeu
-    private Case[][] grille = new Case[12][60];
+    Case[][] grille = new Case[12][60];
     //un tableau 2D de cases
 
     //Constructeur
@@ -96,7 +96,7 @@ public class Grille {
 
         for (int i = 0; i < this.grille.length; i++){
             for (int j = 0; j < this.grille[i].length; j++){
-                if (robot.getRoboCoord().egal(j,i)){ // hmmmmmm
+                if (robot.getRoboCoord().egal(j,i)){
                     System.out.println('#');
                     continue;
                 } else if (this.grille[i][j] == null){

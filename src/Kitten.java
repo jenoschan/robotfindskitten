@@ -18,6 +18,6 @@ public class Kitten extends Case{
     public void interagir(Robot robot) {
         System.out.println("Noiceeeeeee!");
         System.out.println(this.catName + " <3 " + robot.robotName + "uwu");
-        //todo --> d.java
+        robot.isCanMove();
     }
 }
