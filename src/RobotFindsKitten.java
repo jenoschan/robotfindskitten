@@ -25,6 +25,7 @@ public class RobotFindsKitten {
                 case 't' -> {
                     if (robot.isGotTeleport()) {
                         robot.setRoboCoord(game.randomEmptyCell());
+                        robot.setGotTeleport(false); // is this an issue or not
                         continue;
                     }
                 }
@@ -34,16 +35,16 @@ public class RobotFindsKitten {
             Grille tempGrille = game;
             Robot tempRobot = robot;
 
-            int tempAxe = axeX;
-            int newAxeX = axeY;
-            int newAxeY = tempAxe;
+            int newAxeX = axeX;
+            int newAxeY = axeY;
+
 
             Robot newRobot = tempRobot;
             Grille newGrille = tempGrille;
 
             if (newAxeY >= 0 && newAxeX != newGrille.getGrille()[0].length
-                    && newAxeY != newGrille.getGrille()[0].length && (newGrille.getGrille()[newAxeX][newAxeY] == null
-                    || newGrille.getGrille()[newAxeX][newAxeY].interactionPossible(newRobot))){
+                    && newAxeX != newGrille.getGrille()[0].length && (newGrille.getGrille()[newAxeY][newAxeX] == null
+                    || newGrille.getGrille()[newAxeY][newAxeX].interactionPossible(newRobot))){
 
                 robot.setRoboCoord(axeX,axeY);
 
@@ -63,6 +64,12 @@ public class RobotFindsKitten {
                     continue;
                 }
                 finalGrille.getGrille()[finalAxeY][finalAxeX] = null;
+
+                if (finalGrille.getGrille()[finalAxeY][finalAxeX] instanceof Mur){
+                    continue;
+                }
+                finalGrille.getGrille()[finalAxeY][finalAxeX] = null;
+
             }
 
         }

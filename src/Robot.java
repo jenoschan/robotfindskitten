@@ -55,7 +55,7 @@ public class Robot {
     }
 
     public void setGotTeleport(boolean hasTeleport){
-        this.gotTeleport = true;
+        this.gotTeleport = hasTeleport;
     }
 
     public void setCanMove(){
