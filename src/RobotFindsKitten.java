@@ -25,14 +25,13 @@ public class RobotFindsKitten {
                 case 't' -> {
                     if (robot.isGotTeleport()) {
                         robot.setRoboCoord(game.randomEmptyCell());
-                        robot.setGotTeleport(false); // is this an issue or not
                         continue;
                     }
                 }
                 case 'q' -> robot.setCanMove();
             }
 
-            if (axeY >= 0 && axeX != game.getGrille()[0].length
+            if (axeX >= 0 && axeY >= 0 && axeY != game.getGrille().length
                     && axeX != game.getGrille()[0].length && (game.getGrille()[axeY][axeX] == null
                     || game.getGrille()[axeY][axeX].interactionPossible(robot))){
 
