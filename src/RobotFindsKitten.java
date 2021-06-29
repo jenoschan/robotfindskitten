@@ -32,44 +32,21 @@ public class RobotFindsKitten {
                 case 'q' -> robot.setCanMove();
             }
 
-            Grille tempGrille = game;
-            Robot tempRobot = robot;
-
-            int newAxeX = axeX;
-            int newAxeY = axeY;
-
-
-            Robot newRobot = tempRobot;
-            Grille newGrille = tempGrille;
-
-            if (newAxeY >= 0 && newAxeX != newGrille.getGrille()[0].length
-                    && newAxeX != newGrille.getGrille()[0].length && (newGrille.getGrille()[newAxeY][newAxeX] == null
-                    || newGrille.getGrille()[newAxeY][newAxeX].interactionPossible(newRobot))){
+            if (axeY >= 0 && axeX != game.getGrille()[0].length
+                    && axeX != game.getGrille()[0].length && (game.getGrille()[axeY][axeX] == null
+                    || game.getGrille()[axeY][axeX].interactionPossible(robot))){
 
                 robot.setRoboCoord(axeX,axeY);
 
-                Grille preFGrille = game;
-                Robot finalRobot = robot;
-                Grille finalGrille = preFGrille;
-
-                int finalAxeX = finalRobot.getRoboCoord().getX();
-                int finalAxeY = finalRobot.getRoboCoord().getY();
-
-                if (finalGrille.getGrille()[finalAxeY][finalAxeX] == null) {
+                if (game.getGrille()[axeY][axeX] == null) {
                     continue;
                 }
-                finalGrille.getGrille()[finalAxeY][finalAxeX].interagir(finalRobot);
+                game.getGrille()[axeY][axeX].interagir(robot);
 
-                if (finalGrille.getGrille()[finalAxeY][finalAxeX] instanceof NonKitten) {
+                if (game.getGrille()[axeY][axeX] instanceof NonKitten) {
                     continue;
                 }
-                finalGrille.getGrille()[finalAxeY][finalAxeX] = null;
-
-                if (finalGrille.getGrille()[finalAxeY][finalAxeX] instanceof Mur){
-                    continue;
-                }
-                finalGrille.getGrille()[finalAxeY][finalAxeX] = null;
-
+                game.getGrille()[axeY][axeX] = null;
             }
 
         }
