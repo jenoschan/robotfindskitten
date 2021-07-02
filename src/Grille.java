@@ -3,7 +3,15 @@ public class Grille {
     private Case[][] grille;
     //un tableau 2D de cases
 
-    //Constructeur
+    /**
+     * Constructeur pour la grille.
+     * @param nbrPiecesX Nombre de pièces horizontalement.
+     * @param nbrPiecesY Nombre de pièces verticalement.
+     * @param largeurPiece Largeur des pièces.
+     * @param hauteurPiece Hauteur des pièces.
+     * @param nbrNonKitten Nombre d'objets non-kitten qui sont distribués.
+     */
+    
     public Grille(int nbrPiecesX, int nbrPiecesY,
                   int largeurPiece, int hauteurPiece, int nbrNonKitten) {
 
@@ -69,7 +77,12 @@ public class Grille {
     public Case[][] getGrille() {
         return this.grille;
     }
-
+    
+    /**
+     * Méthode qui donne une case vide aléatoire sur la grille.
+     * @return Retourne une case vide alétoire.
+     */
+    
     public Point randomEmptyCell() {
         //Retourne une coordonnÃ©e de cellule qui ne contient rien
 
@@ -84,6 +97,7 @@ public class Grille {
         return new Point(coordX, coordY);
     }
 
+    
     public boolean deplacementPossible(Robot robot, int x, int y) {
         /**indique si câ€™est possible pour le robot robot de marcher sur la
          cellule de coordonnÃ©e (x, y)**/

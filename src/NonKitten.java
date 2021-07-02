@@ -1,4 +1,9 @@
 public class NonKitten extends Case {
+	
+	/**
+	 * Messages de description pour chaque objet non-kitten.
+	 */
+	
     public static String[] descriptions = new String[]{
             "I pity the fool who mistakes me for kitten!\", sez Mr. T.",
             "That's just an old tin can.",
@@ -408,6 +413,9 @@ public class NonKitten extends Case {
             "The spectre of Sherlock Holmes wills you onwards."};
     private String message;
 
+    /**
+     * Constructeur pour les objets non-kitten. Lui assigne un message parmi la liste.
+     */
     public NonKitten(){
         int randomIndex = (int) (Math.random() * descriptions.length);
         this.message = descriptions[randomIndex];
@@ -419,6 +427,12 @@ public class NonKitten extends Case {
         return true;
     }
 
+    
+    /**
+     * Lors d'une interraction entre le robot et un objet non-kitten, affiche
+     * le message assigné par son constructeur.
+     */
+    
     @Override
     public void interagir(Robot robot) {
         System.out.println(this.message);

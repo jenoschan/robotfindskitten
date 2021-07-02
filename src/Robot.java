@@ -13,7 +13,13 @@ public class Robot {
     public int nbrKey;
     public boolean canMove;
     public boolean gotTeleport;
-
+    
+    /**
+     * Constructeur du robot.
+     * @param robotName Le nom du robot assigné parmi une liste prédéfinie.
+     * @param roboCoord Les coordonnées du robot, assignées au hasard.
+     */
+    
     public Robot(String robotName, Point roboCoord){
         this.robotName = robotName;
         this.roboCoord = roboCoord;
@@ -25,7 +31,11 @@ public class Robot {
     public String getRobotName(){
         return this.robotName;
     }
-
+    
+   
+    // Méthodes utilisés pour les différentes actions du robot et
+    //ses caractéristiques.
+    
     public void useKey(){
         this.nbrKey --;
     }
@@ -66,6 +76,9 @@ public class Robot {
         return this.canMove;
     }
 
+    /**
+     * Methode qui rajoute un T dans le chatbox si le robot possède le téléporteur.
+     */
     @Override
     public String toString() {
         String message = this.robotName + " ["+ this.nbrKey + "] ";

@@ -1,5 +1,8 @@
 public class Porte extends Case{
-
+	
+	/**
+	 * Constructeur pour les portes sur la grille. La porte est représentée par un !.
+	 */
     public Porte(){
         this.representation = (char) 33; //!
     }
@@ -11,7 +14,10 @@ public class Porte extends Case{
         }
         return false;
     }
-
+    
+    /**
+     * Lors d'une interraction entre le robot et une porte, décrémente le nombre de clés.
+     */
     @Override
     public void interagir(Robot robot) {
         robot.useKey();
